@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/* input {
+width: 100px;
+}
+ */
+ a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul, li {
+	list-style: none;
+}
+
+img {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+}
+table {
+width:80%;
+height:100%;
+margin: 20px auto;
+/* background-color: orange; */
+color : biue;
+}  
+
+
+.table1 {
+width : 100%;
+font-size: 12px;
+}
+.table2 {
+width : 100%;
+font-size: 12px;
+}
+.table3 {
+width : 80%;
+margin:0 auto;
+overflow: hidden;
+font-size: 12px;
+}
+.table3 table {
+width: 49%;
+box-sizing: border-box;
+}	
+.table4 {
+width : 80%;
+font-size: 12px;
+}
+.table5 {
+width : 80%;
+margin:0 auto;
+overflow: hidden;
+font-size: 12px;
+}
+.table5 table {
+width: 49%;
+height:80px;
+box-sizing: border-box;
+}
+.table6 {
+width : 80%;
+font-size: 12px;
+}
+
+.th {
+align-content: center;
+}
+

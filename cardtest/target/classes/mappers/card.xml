@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="userInfoDao">
+	<resultMap type="userInfo" id="userInfo">
+		<result property="userIdx"					column="USER_IDX" />
+		<result property="userRegisterDate"			column="USER_REGISTER_DATE" />
+		<result property="userName"					column="USER_NAME" />
+		<result property="userSocialSecunum"		column="USER_SOCIAL_SECUNUM" />
+		<result property="userSex"					column="USER_SEX" />
+		<result property="userComp"					column="USER_COMP" />
+		<result property="userCompEnterdate"		column="USER_COMP_ENTERDATE" />
+		<result property="userDept"					column="USER_DEPT" />
+		<result property="userSpot"					column="USER_SPOT" />
+		<result property="userArmyServ"				column="USER_ARMY_SERV" />
+		<result property="userMaritalStatus"		column="USER_MARITAL_STATUS" />
+		<result property="userArmyServEnter"		column="USER_ARMY_SERV_ENTER" />
+		<result property="userArmyServLeave"		column="USER_ARMY_SERV_LEAVE" />
+		<result property="userArmyServPeriod"		column="USER_ARMY_SERV_PERIOD" />
+		<result property="userTelnumWired"			column="USER_TELNUM_WIRED" />
+		<result property="userTelnumWireless"		column="USER_TELNUM_WIRELESS" />
+		<result property="userEmail"				column="USER_EMAIL" />
+		<result property="userZipcode"				column="USER_ZIPCODE" />
+		<result property="userAddress"				column="USER_ADDRESS" />
+		<result property="userDomain"				column="USER_DOMAIN" />
+	</resultMap>
+	
+	<select id="List" parameterType="userInfo" resultType="userInfo">
+		insert into 
+		user_info
+		(
+			USER_IDX
+			,USER_REGISTER_DATE
+			,USER_NAME
+			,USER_SOCIAL_SECUNUM 
+			,USER_SEX
+			,USER_COMP
+			,USER_COMP_ENTERDATE 
+			,USER_DEPT
+			,USER_SPOT
+			,USER_ARMY_SERV
+			,USER_MARITAL_STATUS
+			,USER_ARMY_SERV_ENTER
+			,USER_ARMY_SERV_LEAVE
+			,USER_ARMY_SERV_PERIOD
+			,USER_TELNUM_WIRED
+			,USER_TELNUM_WIRELESS
+			,USER_EMAIL
+			,USER_ZIPCODE
+			,USER_ADDRESS
+		) 
+		values
+		(
+			(SELECT NVL(MAX(USER_IDX),0)+1 FROM USER_INFO)
+			,sysdate
+			,#{userName}
+			,#{userSocialSecunum}
+			,#{userSex}
+			,#{userComp}
+			,#{userCompEnterdate}
+			,#{userDept}
+			,#{userSpot}
+			,#{userArmyServ}
+			,#{userMaritalStatus}
+			,#{userArmyServEnter}
+			,#{userArmyServLeave}
+			,#{userArmyServPeriod}
+			,#{userTelnumWired}
+			,#{userTelnumWireless}
+			,#{userEmail}
+			,#{userZipcode}
+			,#{userAddress}
+		)
+	</select>
+	
+	
+	
+	<!-- 회원목록 리스트 -->
+	<select id="MinList" resultType="userInfo">
+		SELECT 
+			USER_IDX as userIdx          
+			,to_char(USER_REGISTER_DATE,'yyyy-mm-dd') as userRegisterDate
+			,USER_NAME as userName         
+			,USER_EMAIL as userEmail       
+		FROM
+	                USER_INFO 
+	    ORDER BY
+	    			userIdx DESC
+		</select>
+		
+	<select id="viewList" resultType="userInfo">
+	SELECT 
+		USER_IDX as userIdx
+		,USER_REGISTER_DATE as userRegisterDate
+		,USER_NAME as userName
+		,USER_SOCIAL_SECUNUM as userSocialSecunum
+		,USER_SEX as userSex
+		,USER_COMP as userComp
+		,USER_COMP_ENTERDATE as userCompEnterdate
+		,USER_DEPT as userDept
+		,USER_SPOT as userSpot
+		,USER_ARMY_SERV as userArmySery
+		,USER_MARITAL_STATUS as userMaritalStatus
+		,USER_ARMY_SERV_ENTER as userArmyServEnter
+		,USER_ARMY_SERV_LEAVE as userArmyServLeave
+		,USER_ARMY_SERV_PERIOD as userArmyServPeriod
+		,USER_TELNUM_WIRED as userTelnumWired
+		,USER_TELNUM_WIRELESS as userTelnumWireless
+		,USER_EMAIL as userEmail
+		,USER_ZIPCODE as userZipcode
+		,USER_ADDRESS as userAddress
+	FROM
+		USER_INFO 
+	WHERE 
+		USER_IDX = #{userIdx}
+	</select>
+		
+	<delete id="delete" parameterType="Integer">
+		DELETE 
+			USER_INFO 
+		WHERE 
+			USER_IDX = #{userIdx}
+	</delete>
+	
+</mapper>
